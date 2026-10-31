@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>simChef culinary school 🍳</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="James Duncan, Tiffany Tang" />
+    <script src="libs/header-attrs-2.19/header-attrs.js"></script>
+    <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.6/tile-view.js"></script>
+    <link href="libs/animate.css-3.7.2/animate.xaringan.css" rel="stylesheet" />
+    <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra_fit-screen-0.2.6/fit-screen.js"></script>
+    <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.2.6/panelset.js"></script>
+    <script src="libs/js-cookie-3.0.0/js.cookie.js"></script>
+    <script src="libs/peerjs-1.3.1/peerjs.min.js"></script>
+    <script src="libs/tiny.toast-1.0.0/toast.min.js"></script>
+    <link href="libs/xaringanExtra-broadcast-0.2.6/broadcast.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-broadcast-0.2.6/broadcast.js"></script>
+    <script src="libs/mark.js-8.11.1/mark.min.js"></script>
+    <link href="libs/xaringanExtra-search-0.0.1/search.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-search-0.0.1/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":false,"autoSearch":true}) })</script>
+    <script src="libs/freezeframe-5.0.2/freezeframe.min.js"></script>
+    <script src="libs/xaringanExtra-freezeframe-0.0.1/freezeframe-init.js"></script>
+    <script id="xaringanExtra-freezeframe-options" type="application/json">{"selector":"img[src$=\"gif\"]","trigger":"click","overlay":false,"responsive":true,"warnings":true}</script>
+    <link href="libs/xaringanExtra-extra-styles-0.2.6/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-progressBar-0.0.1/progress-bar.js"></script>
+    <link href="libs/animate.css-xaringan-3.7.2/animate.fade.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="css/culinary.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# simChef culinary school 🍳
+]
+.subtitle[
+## Cooking up reliable simulations in R
+]
+.author[
+### James Duncan, Tiffany Tang
+]
+.institute[
+### <p>UC Berkeley</p>
+]
+.date[
+### 2023/03/06
+]
+
+---
+
+class: hide_logo
+
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #fbb040;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 128px;
+z-index: 0;
+background-image: url(images/simChef-hex-v2.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+
+.center.hex-logo[![simChef hexagon logo](images/simChef-hex-v2.png)]
+
+.center[
+
+```r
+devtools::install_github("Yu-Group/simChef")
+```
+]
+
+.center.faces[
+.fl.w-20[&lt;img src="images/james.jpg" alt="James Duncan" class="center"&gt;]
+.fl.w-20[&lt;img src="images/Tiffany.jpg" alt="Tiffany Tang" class="center"&gt;]
+.fl.w-20[&lt;img src="images/corrine.jpg" alt="Corrine F. Elliott" class="center"&gt;]
+.fl.w-20[&lt;img src="images/phil.jpg" alt="Philippe Boileau" class="center"&gt;]
+.fl.w-20[&lt;img src="images/Bin.jpg" alt="Bin Yu" class="center"&gt;]
+]
+.center.faces[
+.fl.w-20.f6[J. Duncan]
+.fl.w-20.f6[T. Tang]
+.fl.w-20.f6[C.F. Elliott]
+.fl.w-20.f6[P. Boileau]
+.fl.w-20.f6[B. Yu]
+]&lt;br /&gt;
+
+---
+
+# Today's recipe
+
+### 1. Overview (~5-10 min)
+
+--
+class: no-animation
+
+- Why we created `simChef`
+
+--
+- Core abstractions in `R6`
+
+--
+
+### 2. Dive into `simChef`'s features (~30-40 min)
+
+--
+- Tidyverse-like "grammar of simulations"
+
+--
+- Inputs and outputs of your functions
+
+--
+- Building the components of a `simChef::Experiment`
+
+--
+- Running and debugging
+
+--
+- Summarizing and documenting your simulation
+
+--
+
+### 3. Q&amp;A (~5-10 min)
+
+---
+
+# Overview
+
+`simChef` is an R package to facilitate **transparent** and **reliable** simulation
+experiments, with PCS as the guiding framework.
+
+.center.recipe1[![recipe for a principled simulation](images/recipe-1.png)]
+
+---
+
+# Overview
+
+`simChef` is an R package to facilitate **transparent** and **reliable** simulation
+experiments, with PCS as the guiding framework.
+
+.center.recipe2[![recipe for a principled simulation](images/recipe-2.png)]
+
+---
+
+# Overview
+
+`simChef` is an R package to facilitate **transparent** and **reliable** simulation
+experiments, with PCS as the guiding framework.
+
+.center.recipe3[![recipe for a principled simulation](images/recipe-3.png)]
+
+---
+
+# Overview
+
+`simChef` is an R package to facilitate **transparent** and **reliable** simulation
+experiments, with PCS as the guiding framework.
+
+.center.recipe4[![recipe for a principled simulation](images/recipe-4.png)]
+
+---
+
+# A simulation with MERITS
+
+&lt;span style="font-size: 32pt; font-family: bold"&gt;**M**&lt;/span&gt;**odular**: 
+written in **self-contained** and **logically partitioned** segments of code.
+
+--
+
+&lt;span style="font-size: 32pt; font-family: bold"&gt;**E**&lt;/span&gt;**fficient**:
+**computationally** and **conceptually** streamlined.
+
+--
+
+&lt;span style="font-size: 32pt; font-family: bold"&gt;**R**&lt;/span&gt;**ealistic**:
+**faithful** to the **natural world** or **realm of application**, to the best extent allowed by established theory and/or available real-world data.
+
+--
+
+&lt;span style="font-size: 32pt; font-family: bold"&gt;**I**&lt;/span&gt;**ntuitive**:
+**sensible** to both the intended audience and a **broad range** of potential consumers, across all parts of the research product: simulation architecture, documentation, code, and analysis of results.
+
+--
+
+&lt;span style="font-size: 32pt; font-family: bold"&gt;**T**&lt;/span&gt;**ransparent**:
+documented **thoroughly** and **candidly**.
+
+--
+
+&lt;span style="font-size: 32pt; font-family: bold"&gt;**S**&lt;/span&gt;**table**:
+**reproducible/replicable**, and (potentially) **generalizable** beyond the scope of the simulation.
+
+---
+class: more-list-spacing
+
+# The `simChef` Vision
+
+- Versatile **R framework** to support simulation studies satisfying these MERITS
+
+--
+- Allow data scientists to focus on substantive questions with **fewer technical distractions**
+
+--
+- **Lower** the **activation barrier** to running high-quality simulation studies
+
+--
+- Provide comprehensive simulation **documentation and archive** of simulation artifacts for **transparency and reproducibility**
+
+---
+class: more-list-spacing
+
+# `simChef` Highlights
+
+- An **intuitive grammar** for simulation studies
+
+--
+- Automated **documentation** and **visualization** of results
+
+--
+- **Caching** of results
+
+--
+- Ease of **parallelization**
+
+--
+- **Debugging** tools
+
+---
+
+# An intuitive grammar for simulation studies
+
+
+```r
+# create experiment
+my_exper &lt;- create_experiment(name = "Experiment") %&gt;%
+  add_dgp(my_dgp, name = "DGP1") %&gt;%
+  add_method(my_method, name = "Method1") %&gt;%
+  add_evaluator(my_evaluator, name = "Eval1") %&gt;%
+  add_visualizer(my_visualizer, name = "Viz1") %&gt;%
+  add_vary_across(.dgp = "DGP1",
+                  n = c(10, 100, 1000))
+
+# run experiment
+my_results &lt;-  run_experiment(my_exper, n_reps = 25)
+
+# document and visualize experiment results
+create_doc_template(my_exper)
+render_docs(my_exper)
+```
+
+---
+
+# Core abstractions
+
+We use [`R6`](https://r6.r-lib.org/index.html) to encompass these simulation components:
+
+--
+
+**`simChef::DGP`**
+
+.inset.ml3[Data-generating processes which define the “ground truth” and flexibly generate simulated data.]
+
+--
+
+**`simChef::Method`**
+
+.inset.ml3[The main objects of study (your method), along with competitors / baselines.]
+
+--
+
+**`simChef::Evaluator`**
+
+.inset.ml3[Produce meaningful summaries of the results.]
+
+--
+
+**`simChef::Visualizer`**
+
+.inset.ml3[Output plots, tables, R Markdown, LaTeX, etc. to populate interactive experiment documentation.]
+
+--
+
+**`simChef::Experiment`**
+
+.inset.ml3[Puts together all of the above.]
+
+---
+
+# A grammar of data
+
+
+```r
+library(simChef)
+set.seed(123)
+
+my_dgp &lt;- DGP$new(function(n) rnorm(n), "my-dgp")
+```
+
+---
+count: false
+
+# A grammar of data
+
+
+```r
+library(simChef)
+set.seed(123)
+
+my_dgp &lt;- create_dgp(function(n) rnorm(n), "my-dgp")
+```
+
+---
+count: false
+
+# A grammar of data
+
+
+```r
+library(simChef)
+set.seed(123)
+
+my_dgp &lt;- create_dgp(function(n) rnorm(n), "my-dgp")
+my_data &lt;- my_dgp$generate(3)
+str(my_data)
+```
+
+```
+## List of 1
+##  $ : num [1:3] -0.56 -0.23 1.56
+```
+
+---
+count: false
+
+# A grammar of methods
+
+
+```r
+library(simChef)
+set.seed(123)
+
+my_dgp &lt;- create_dgp(function(n) rnorm(n), "my-dgp")
+my_data &lt;- my_dgp$generate(3)
+str(my_data)
+```
+
+```
+## List of 1
+##  $ : num [1:3] -0.56 -0.23 1.56
+```
+
+```r
+my_method &lt;- create_method( # or Method$new(...)
+  function(x) mean(x), "my-method"
+)
+```
+
+---
+count: false
+
+# A grammar of methods
+
+
+```r
+library(simChef)
+set.seed(123)
+
+my_dgp &lt;- create_dgp(function(n) rnorm(n), "my-dgp")
+my_data &lt;- my_dgp$generate(3)
+str(my_data)
+```
+
+```
+## List of 1
+##  $ : num [1:3] -0.56 -0.23 1.56
+```
+
+```r
+my_method &lt;- create_method( # or Method$new(...)
+  function(x) mean(x), "my-method")
+
+my_results &lt;- my_method$fit(my_data)
+my_results
+```
+
+```
+## # A tibble: 1 × 1
+##   result1
+##     &lt;dbl&gt;
+## 1   0.256
+```
+
+---
+
+# A grammar of replicates
+
+
+```r
+my_exper &lt;- create_experiment( # or Experiment$new(...)
+  name = "my-exper"
+)
+```
+
+---
+
+# A grammar of replicates
+
+
+```r
+my_exper &lt;- create_experiment(name = "my-exper")
+```
+
+---
+count: false
+
+# A grammar of replicates
+
+
+```r
+my_exper &lt;- create_experiment(name = "my-exper") %&gt;%
+  add_dgp(my_dgp)
+```
+
+---
+count: false
+
+# A grammar of replicates
+
+
+```r
+my_exper &lt;- create_experiment(name = "my-exper") %&gt;%
+  add_dgp(my_dgp) %&gt;%
+  add_method(my_method)
+```
+
+---
+count: false
+
+# A grammar of replicates
+
+
+```r
+my_exper &lt;- create_experiment(name = "my-exper") %&gt;%
+  add_dgp(my_dgp) %&gt;%
+  add_method(my_method) %&gt;%
+  add_vary_across(.dgp = my_dgp,
+                  n = c(10, 100, 1000))
+```
+
+---
+count: false
+
+# A grammar of replicates
+
+
+```r
+my_exper &lt;- create_experiment(name = "my-exper") %&gt;%
+  add_dgp(my_dgp) %&gt;%
+  add_method(my_method) %&gt;%
+  add_vary_across(.dgp = my_dgp,
+                  n = c(10, 100, 1000))
+my_exper
+```
+
+```
+## Experiment Name: my-exper 
+##    Saved results at: results/my-exper 
+##    DGPs: my-dgp 
+##    Methods: my-method 
+##    Evaluators:  
+##    Visualizers:  
+##    Vary Across: 
+##       DGP: my-dgp 
+##          n:  num [1:3] 10 100 1000
+```
+
+---
+count: false
+
+# A grammar of replicates
+
+
+```r
+my_exper &lt;- create_experiment(name = "my-exper") %&gt;%
+  add_dgp(my_dgp) %&gt;%
+  add_method(my_method) %&gt;%
+  add_vary_across(.dgp = my_dgp,
+                  n = c(10, 100, 1000))
+
+my_results &lt;- fit_experiment( # or my_exper$fit(...)
+  my_exper, n_reps = 25
+)
+```
+
+---
+count: false
+
+# A grammar of replicates
+
+
+```r
+my_exper &lt;- create_experiment(name = "my-exper") %&gt;%
+  add_dgp(my_dgp) %&gt;%
+  add_method(my_method) %&gt;%
+  add_vary_across(.dgp = my_dgp,
+                  n = c(10, 100, 1000))
+
+my_results &lt;- fit_experiment( # or my_exper$fit(...)
+  my_exper, n_reps = 25
+)
+```
+
+```
+## Fitting my-exper...
+```
+
+```
+## 25 reps completed (totals: 25/25) | time taken: 0.135532 minutes
+```
+
+```
+## ==============================
+```
+
+```r
+my_results
+```
+
+```
+## # A tibble: 75 × 5
+##    .rep  .dgp_name .method_name     n result1
+##    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;
+##  1 1     my-dgp    my-method       10 -0.392 
+##  2 1     my-dgp    my-method      100 -0.0204
+##  3 1     my-dgp    my-method     1000 -0.0568
+##  4 2     my-dgp    my-method       10  0.259 
+##  5 2     my-dgp    my-method      100  0.0202
+##  6 2     my-dgp    my-method     1000  0.0581
+##  7 3     my-dgp    my-method       10 -0.0403
+##  8 3     my-dgp    my-method      100 -0.205 
+##  9 3     my-dgp    my-method     1000 -0.101 
+## 10 4     my-dgp    my-method       10 -0.514 
+## # … with 65 more rows
+```
+
+---
+
+# A grammar of simulations
+
+
+```r
+# user's function must have a `fit_results` arg
+# can also take a `vary_params` arg and additional custom args
+my_eval &lt;- create_evaluator(...)
+```
+
+
+
+---
+count: false
+
+# A grammar of simulations
+
+
+```r
+# user's function must have a `fit_results` arg
+# can also take a `vary_params` arg and additional custom args
+my_eval &lt;- create_evaluator(...)
+
+# user's function should have either a `fit_results` or `eval_results` arg
+# can also take a `vary_params` arg and additional custom args
+my_viz &lt;- create_vizualizer(...)
+```
+
+---
+count: false
+
+# A grammar of simulations
+
+
+```r
+# user's function must have a `fit_results` arg
+# can also take a `vary_params` arg and additional custom args
+my_eval &lt;- create_evaluator(...)
+
+# user's function should have either a `fit_results` or `eval_results` arg
+# can also take a `vary_params` arg and additional custom args
+my_viz &lt;- create_vizualizer(...)
+
+my_exper %&gt;%
+  add_evaluator(my_eval, "my-eval") %&gt;%
+  add_visualizer(my_viz, "my-viz")
+```
+
+---
+count: false
+
+# A grammar of simulations
+
+
+```r
+# user's function must have a `fit_results` arg
+# can also take a `vary_params` arg and additional custom args
+my_eval &lt;- create_evaluator(...)
+
+# user's function should have either a `fit_results` or `eval_results` arg
+# can also take a `vary_params` arg and additional custom args
+my_viz &lt;- create_vizualizer(...)
+
+my_exper %&gt;%
+  add_evaluator(my_eval, "my-eval") %&gt;%
+  add_visualizer(my_viz, "my-viz")
+
+run_experiment(my_exper) # reps + eval + viz
+```
+
+---
+# Running and debugging
+
+You can find a similar example at https://yu-group.github.io/simChef/articles/parallel.html
+
+Required packages: `simChef`, `glmnet`, `MASS`.
+
+--
+Some slightly more interesting `DGP` functions:
+
+
+```r
+dense_dgp_fun &lt;- function(n=100, rho=0.5, noise_level=1) {
+  cov_mat &lt;- diag(nrow = 5)
+  cov_mat[cov_mat == 0] &lt;- rho
+  X &lt;- MASS::mvrnorm(n = n, mu = rep(0, 5), Sigma = cov_mat)
+  y &lt;- cbind(1, X) %*% c(-8, 3, -1, 0.1, 0.5, 1) + rnorm(n, sd = noise_level)
+  return(list(X = X, y = y, coeff = c(3, -1, 0.1, 0.5, 1)))
+}
+```
+
+--
+
+```r
+sparse_dgp_fun &lt;- function(n=100, d=100, rho=0.5, 
+                           sparsity=0.5, noise_level=1,
+                           nonzero_coeff = c(-3, -1, 1, 3)) {
+  cov_mat &lt;- diag(nrow = d)
+  cov_mat[cov_mat == 0] &lt;- rho
+  X &lt;- MASS::mvrnorm(n = n, mu = rep(0, d), Sigma = cov_mat)
+  coeff_prob &lt;- c(sparsity, rep((1 - sparsity) / 4, times = 4))
+  coeff &lt;- c(
+    -8, # intercept
+    sample(
+      c(0, nonzero_coeff), size = d, replace = TRUE,
+      prob = coeff_prob
+    )
+  )
+  y &lt;- cbind(1, X) %*% coeff + rnorm(n, sd = noise_level)
+  return(list(X = X, y = y, coeff = coeff[-1]))
+}
+```
+
+---
+
+# Running and debugging
+
+Some slightly more interesting `Method` functions:
+
+
+```r
+ols &lt;- function(X, y, ...) {
+  fit &lt;- lm(y ~ X)
+  return(c(list(fit = fit), list(...)))
+}
+
+elnet &lt;- function(X, y, alpha=1, lambda=0.1, ...) {
+  fit &lt;- glmnet::glmnet(
+    x = X, y = y, family = "gaussian", alpha = alpha, lambda=lambda
+  )
+  if (alpha == 0.1) {
+    stop("uh oh!")
+  }
+  return(c(list(fit = fit), list(...)))
+}
+```
+
+---
+# Running and debugging
+
+
+```r
+dense_dgp &lt;- create_dgp(dense_dgp_fun)
+
+sparse_dgp &lt;- create_dgp(sparse_dgp_fun)
+
+ols_method &lt;- create_method(ols)
+
+elnet_method &lt;- create_method(elnet)
+```
+
+--
+
+```r
+experiment &lt;- create_experiment(
+  name = "exper", future.packages = "dplyr"
+) %&gt;%
+  add_dgp(dense_dgp, "dense") %&gt;%
+  add_dgp(sparse_dgp, "sparse") %&gt;%
+  add_method(ols_method, "ols") %&gt;%
+  add_method(elnet_method, "elnet") %&gt;%
+  add_vary_across(
+    .dgp = "sparse",
+    n = c(100, 500, 1000),
+    nonzero_coeff = list(c(-3, -1, 1, 3), c(-0.3, -0.1, 0.1, 0.3))
+  ) %&gt;%
+  add_vary_across(
+    .method = "elnet", alpha = c(0, 0.25, 0.5, 0.75, 1)
+  )
+
+experiment
+```
+
+```
+## Experiment Name: exper 
+##    Saved results at: results/exper 
+##    DGPs: dense, sparse 
+##    Methods: ols, elnet 
+##    Evaluators:  
+##    Visualizers:  
+##    Vary Across: 
+##       DGP: sparse 
+##          n:  num [1:3] 100 500 1000
+##          nonzero_coeff: List of 2
+##            $ : num [1:4] -3 -1 1 3
+##            $ : num [1:4] -0.3 -0.1 0.1 0.3
+##       Method: elnet 
+##          alpha:  num [1:5] 0 0.25 0.5 0.75 1
+```
+
+---
+# Running and debugging
+
+
+```r
+n_cores &lt;- future::availableCores(methods = "system")
+n_cores
+```
+
+```
+## system 
+##     16
+```
+
+```r
+# run in parallel
+future::plan(future::multisession, workers = n_cores - 1)
+
+results &lt;- run_experiment(experiment, n_reps = 3)
+```
+
+```
+## Fitting exper...
+```
+
+```
+## 3 reps completed (totals: 3/3) | time taken: 0.202136 minutes
+```
+
+```
+## ==============================
+```
+
+```
+## No evaluators to evaluate. Skipping evaluation.
+```
+
+```
+## ==============================
+```
+
+```
+## No visualizers to visualize. Skipping visualization.
+```
+
+```
+## ==============================
+```
+
+```r
+results
+```
+
+```
+## $fit_results
+## # A tibble: 126 × 8
+##    .rep  .dgp_name .method_name     n nonzero_coeff alpha fit     coeff      
+##    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt; &lt;list&gt;        &lt;dbl&gt; &lt;list&gt;  &lt;list&gt;     
+##  1 1     dense     elnet           NA &lt;NULL&gt;         0    &lt;elnet&gt; &lt;dbl [5]&gt;  
+##  2 1     dense     elnet           NA &lt;NULL&gt;         0.25 &lt;elnet&gt; &lt;dbl [5]&gt;  
+##  3 1     dense     elnet           NA &lt;NULL&gt;         0.5  &lt;elnet&gt; &lt;dbl [5]&gt;  
+##  4 1     dense     elnet           NA &lt;NULL&gt;         0.75 &lt;elnet&gt; &lt;dbl [5]&gt;  
+##  5 1     dense     elnet           NA &lt;NULL&gt;         1    &lt;elnet&gt; &lt;dbl [5]&gt;  
+##  6 1     dense     ols             NA &lt;NULL&gt;        NA    &lt;lm&gt;    &lt;dbl [5]&gt;  
+##  7 1     sparse    elnet          100 &lt;dbl [4]&gt;      0    &lt;elnet&gt; &lt;dbl [100]&gt;
+##  8 1     sparse    elnet          100 &lt;dbl [4]&gt;      0.25 &lt;elnet&gt; &lt;dbl [100]&gt;
+##  9 1     sparse    elnet          100 &lt;dbl [4]&gt;      0.5  &lt;elnet&gt; &lt;dbl [100]&gt;
+## 10 1     sparse    elnet          100 &lt;dbl [4]&gt;      0.75 &lt;elnet&gt; &lt;dbl [100]&gt;
+## # … with 116 more rows
+## 
+## $eval_results
+## NULL
+## 
+## $viz_results
+## NULL
+```
+
+---
+# Running and debugging
+
+
+```r
+experiment %&gt;%
+  update_vary_across(.method = "elnet",
+                     alpha = 0.1)
+```
+
+--
+
+```r
+results &lt;- run_experiment(experiment, n_reps = 3)
+```
+
+```
+## Fitting exper...
+```
+
+```
+## Error in `self$fit()`:
+## ! Error(s) encountered while running the simulation, including:
+## 
+## uh oh!
+## The above error occurred while processing "elnet" with the following params:
+##  $ alpha    : num 0.1
+##  $ data_list:List of 3
+##   ..$ X    : num [1:100, 1:5] 0.131 1.686 0.325 1.628 -1.053 ...
+##   .. ..- attr(*, "dimnames")=List of 2
+##   ..$ y    : num [1:100, 1] -7.7786 0.0333 -6.9508 -3.6844 -12.2912 ...
+##   ..$ coeff: num [1:5] 3 -1 0.1 0.5 1
+##  $ .simplify: logi FALSE
+## 
+## Use `rlang::last_error()$partial_results`to return partial simulation results and `rlang::last_error()$errors` to get simulation errors with the `DGP`, `Method`, and params that led to the error.
+```
+
+--
+
+```r
+rlang::last_error()$partial_results
+```
+
+```
+## # A tibble: 3 × 5
+##   .rep  .dgp_name .method_name fit    coeff    
+##   &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;        &lt;list&gt; &lt;list&gt;   
+## 1 1     dense     ols          &lt;lm&gt;   &lt;dbl [5]&gt;
+## 2 2     dense     ols          &lt;lm&gt;   &lt;dbl [5]&gt;
+## 3 3     dense     ols          &lt;lm&gt;   &lt;dbl [5]&gt;
+```
+
+```r
+rlang::last_error()$errors
+```
+
+```
+## # A tibble: 3 × 9
+##   .dgp  .dgp_…¹ .dgp_…² .method  .meth…³ .method_pa…⁴ .err         .pid .gc     
+##   &lt;lis&gt; &lt;chr&gt;   &lt;lgl&gt;   &lt;list&gt;   &lt;chr&gt;   &lt;list&gt;       &lt;list&gt;      &lt;int&gt; &lt;list&gt;  
+## 1 &lt;DGP&gt; dense   NA      &lt;Method&gt; elnet   &lt;named list&gt; &lt;smChf_rr&gt; 197957 &lt;dbl[…]&gt;
+## 2 &lt;DGP&gt; dense   NA      &lt;Method&gt; elnet   &lt;named list&gt; &lt;smChf_rr&gt; 197951 &lt;dbl[…]&gt;
+## 3 &lt;DGP&gt; dense   NA      &lt;Method&gt; elnet   &lt;named list&gt; &lt;smChf_rr&gt; 197946 &lt;dbl[…]&gt;
+## # … with abbreviated variable names ¹​.dgp_name, ²​.dgp_params, ³​.method_name,
+## #   ⁴​.method_params
+```
+
+---
+
+# Automated R Markdown Documentation
+
+**Rapid** and **convenient** reporting of *results*
+
+**Transparent** and **organized** communication of the *simulation design + code*
+
+--
+
+One line of code:
+
+```r
+render_docs(my_expr)
+```
+
+--
+![Interactive R Markdown simulation documentation](ex/simchef.gif)
+
+--
+
+Let's take a look at an the output of an example simulation project: [github.com/PhilBoileau/simChef-case-study](https://github.com/PhilBoileau/simChef-case-study)
+
+---
+class: no-padding
+
+&lt;iframe src="ex/empirical-fdr-comparison.html" width=100% height=100%&gt;&lt;/iframe&gt;
+
+
+---
+class: hide_logo
+
+# `dgpoix` 🥕
+### A reusable library of DGPs
+[github.com/Yu-Group/dgpoix](https://github.com/Yu-Group/dgpoix)
+ ("*dee-gee-pwaa*", rhymes with "mirepoix")
+
+--
+
+DGPs are the key **ingredients** of every simulation.
+
+
+--
+
+`dgpoix` allows us to quickly create interesting DGPs from modular components.
+
+--
+
+
+```r
+linear_gaussian_dgp &lt;- simChef::create_dgp(
+  dgpoix::linear_gaussian_dgp,
+  # params for linear_gaussian_dgp:
+  n = 100, p_obs = 3, intercept = 1, err = rnorm
+  # dgpoix::coef_sampler function and its params:
+  betas = dgpoix::coef_sampler,
+  coefs = c(0, 0.5, 1), probs = c(0.5, 0.3, 0.2)
+)
+```
+
+--
+
+
+```r
+custom_dgp &lt;- simChef::create_dgp(
+  dgpoix::xy_dgp_constructor,
+  # params for linear_gaussian_dgp:
+  X_fun = my_custom_X_fun,
+  y_fun = my_custom_y_fun,
+  err_fun = my_custom_err_fun,
+  .X_p = 20, # args specific to X
+  .y_p = 2,
+  # err_fun args have no overlap with X_fun or y_fun
+  n_blocks = 3,
+  rho = c(0, 0.4, 0.8)
+)
+```
+
+--
+
+`dgpoix` is currently in very early development, so expect the API to change.
+
+---
+exclude: true
+
+# DGPs
+
+
+---
+exclude: true
+
+# DGPs
+
+This function is then passed to `simChef` to create a `DGP` (with optional
+default values for `n` and `p`).
+
+
+```r
+my_linear_gaussian_dgp_fun &lt;- function(n, p) {
+  ...
+}
+
+dgp &lt;- create_dgp(
+  my_linear_gaussian_dgp_fun,
+  n = 100, p = 3
+)
+
+simChef::list_to_tibble_row(
+  dgp$generate()
+)
+
+## # A tibble: 1 × 3
+   X                y               betas
+   &lt;list&gt;           &lt;list&gt;          &lt;list&gt;
+ 1 &lt;dbl [100 × 3]&gt;  &lt;dbl [100 × 1]&gt; &lt;dbl [3]&gt;
+```
+
+---
+exclude: true
+
+# Varying across DGP / method parameters
+
+After adding DGPs and methods, we can set out experiment to vary across multiple
+parameter values.
+
+
+```r
+elnet &lt;- create_method(
+  function(X, y, alpha=1) {
+    fit &lt;- glmnet::glmnet(
+      x = X, y = y, family = "gaussian", alpha = alpha
+    ) %&gt;% broom::tidy()
+    return(fit)
+  }
+)
+
+experiment &lt;- create_experiment() %&gt;%
+  add_dgp(linear_gaussian_dgp) %&gt;%
+  add_method(elnet) %&gt;%
+  add_vary_across(
+    linear_gaussian_dgp,
+    p_obs = c(10, 100), # observed covariates
+    p_unobs = c(2, 20), # unobserved covariates
+    # varying over a vector-valued parameter 'probs':
+    probs = list(c(0.5, 0.3, 0.2), c(0.8, 0.1, 0.1))
+  )
+```
+
+---
+exclude: true
+
+# Run the experiment
+
+
+We can run the experiment in parallel by setting a
+🖇[`future`](https://future.futureverse.org/) plan
+before calling `fit_experiment`.
+
+
+```r
+future::plan(future::multicore)
+
+results &lt;- fit_experiment(experiment, n_reps = 100)
+## Fitting experiment...
+```
+
+---
+
+# Roadmap of ongoing and future work
+
+--
+- Ongoing usability improvements for `simChef`
+
+--
+- Integration with `testthat` for unit testing of custom simulation functions.
+
+--
+- More flexible and nested parallelism, e.g.: 
+
+
+```r
+future::plan(future.batchtools::batchtools_slurm,
+             future::multisession)
+
+run_experiment(my_exper, parallel_strategy = c("dgps", "reps"))
+```
+
+--
+- Much more work on `dgpoix`
+
+--
+- Your requests? [github.com/Yu-Group/simChef/issues](https://github.com/Yu-Group/simChef/issues)
+
+---
+
+# Try it for yourself!
+
+.center[
+Realistic, reliable, reproducible, and responsible simulations.
+]
+
+Repo: [github.com/Yu-Group/simChef](https://github.com/Yu-Group/simChef)
+
+Docs: [yu-group.github.io/simChef](https://yu-group.github.io/simChef/index.html)
+
+Ex. simulation repo: [github.com/PhilBoileau/simChef-case-study](https://github.com/PhilBoileau/simChef-case-study)
+
+Ex. simulation docs: [https://tinyurl.com/f4ctrw7p](https://philboileau.github.io/simChef-case-study/results/empirical-fdr-comparison/empirical-fdr-comparison.html)
+
+
+&lt;h2 style="text-align: center;"&gt;Let us know what you think!&lt;/h2&gt;
+
+*For development of your own Rmd-generated html documents (and nice Rmd and ggplot themes), check out: [github.com/Yu-Group/vthemes](https://github.com/Yu-Group/vthemes)
+
+---
+class: hide_logo
+
+# How these slides were made
+
+We created these slides in `Rmarkdown` via the package 🖇[`xaringan`](https://bookdown.org/yihui/rmarkdown/xaringan.html).
+
+--
+
+These extensions make `xaringan` even more powerful:
+
+* 🖇[xaringanthemer](https://pkg.garrickadenbuie.com/xaringanthemer)
+* 🖇[xaringanExtra](https://pkg.garrickadenbuie.com/xaringanExtra)
+
+--
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightLanguage": "r",
+"highlightStyle": "googlecode",
+"highlightSpans": true,
+"countIncrementalSlides": false,
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
