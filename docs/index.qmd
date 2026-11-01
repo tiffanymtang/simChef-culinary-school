@@ -3,8 +3,9 @@ title: "simChef culinary school 🍳"
 subtitle: "<b>Cooking up reliable and realistic simulations</b>"
 author: "Tiffany Tang"
 institute: |
-  University of Notre Dame
-date: "November 5, 2026"
+  University of Notre Dame<div style="height: 0.25em;"></div>
+  <b>Slides</b>: <a href="https://tiffanymtang.github.io/simChef-culinary-school">https://tiffanymtang.github.io/simChef-culinary-school</a><br><div style="height: 0.05em;"></div><b>GitHub</b>: <a href="https://github.com/tiffanymtang/simChef-culinary-school">https://github.com/tiffanymtang/simChef-culinary-school</a>
+date: "November 1, 2026"
 date-format: "MMMM D, YYYY"
 format:
   revealjs:
@@ -574,7 +575,7 @@ dgp <- simChef::create_dgp(
 :::
 :::
 
-<div class="component-contract fragment fade-in"><b>In this recipe:</b> <code>n</code> can be varied with <code>add_vary_across()</code>; the named train/test objects and true interaction are passed to <code>fit_irf()</code>.</div>
+<div class="component-contract fragment fade-in">The outputs of <code>generate_xy_data()</code> are named to match the inputs of <code>fit_irf()</code>.</div>
 
 
 ## Case Study: Creating the Method {.component-code-slide}
@@ -626,7 +627,7 @@ irf <- simChef::create_method(
 :::
 :::
 
-<div class="component-contract fragment fade-in"><b>In this recipe:</b> arguments from the DGP match the inputs to <code>fit_irf()</code>; its named outputs contain everything needed by the evaluators.</div>
+<div class="component-contract fragment fade-in">The outputs of <code>fit_irf()</code> should return everything needed by the evaluators and visualizers</code>.</div>
 
 
 ## Case Study: Creating an Evaluator {.component-code-slide .evaluator-code-slide}
@@ -685,7 +686,7 @@ prediction <- simChef::create_evaluator(
 :::
 :::
 
-<div class="component-contract fragment fade-in"><b>Same pattern:</b> replace the metric and name to create the <code>interaction_recovery</code> and <code>stability</code> evaluators.</div>
+<div class="component-contract fragment fade-in"><code>fit_results</code> and <code>vary_params</code> are automatically passed to the evaluator functions by <code>simChef</code>.</div>
 
 
 ## Case Study: Creating a Visualizer {.component-code-slide}
@@ -728,7 +729,7 @@ prediction_plot <- simChef::create_visualizer(
 :::
 :::
 
-<div class="component-contract fragment fade-in"><b>Same pattern:</b> wrap <code>plot_interaction_recovery()</code> and <code>plot_stability()</code> to create the other two visualizers.</div>
+<div class="component-contract fragment fade-in"><code>fit_results</code>, <code>eval_results</code>, and <code>vary_params</code> are automatically passed to the visualizer functions by <code>simChef</code>.</div>
 
 
 ## Case Study Results: Prediction Performance {.prediction-results-slide}
@@ -784,7 +785,7 @@ prediction_plot +
 <div class="prediction-result-row"><span><i>n</i> = 400</span><strong>0.806</strong></div>
 <div class="prediction-result-row"><span><i>n</i> = 1,200</span><strong>0.832</strong></div>
 <div class="prediction-result-row"><span><i>n</i> = 2,000</span><strong>0.840</strong></div>
-<div class="prediction-results-takeaway"><b>Takeaway</b><br>Prediction improves as the training sample grows, with smaller gains beyond <i>n</i> = 1,200.</div>
+<div class="prediction-results-takeaway"><b>Takeaway</b><br>Prediction improves as the training sample grows but with diminishing returns.</div>
 </div>
 </div>
 

@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.5.53">
 
   <meta name="author" content="Tiffany Tang">
-  <meta name="dcterms.date" content="2026-11-05">
+  <meta name="dcterms.date" content="2026-11-01">
   <title>simChef culinary school 🍳</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -402,12 +402,20 @@
 Tiffany Tang 
 </div>
         <p class="quarto-title-affiliation">
-            </p><p>University of Notre Dame</p>
+            University of Notre Dame
+            </p><div style="height: 0.25em;">
+
+            </div>
+            <b>Slides</b>: <a href="https://tiffanymtang.github.io/simChef-culinary-school">https://tiffanymtang.github.io/simChef-culinary-school</a><br>
+            <div style="height: 0.05em;">
+
+            </div>
+            <p><b>GitHub</b>: <a href="https://github.com/tiffanymtang/simChef-culinary-school">https://github.com/tiffanymtang/simChef-culinary-school</a></p>
           <p></p>
     </div>
 </div>
 
-  <p class="date">November 5, 2026</p>
+  <p class="date">November 1, 2026</p>
 </section>
 <section id="todays-recipe" class="slide level2 hide-logo">
 <h2>Today’s recipe</h2>
@@ -1001,7 +1009,7 @@ Choice of <span class="math inline">\(\varepsilon\)</span>
 </div>
 </div>
 <div class="component-contract fragment fade-in">
-<b>In this recipe:</b> <code>n</code> can be varied with <code>add_vary_across()</code>; the named train/test objects and true interaction are passed to <code>fit_irf()</code>.
+The outputs of <code>generate_xy_data()</code> are named to match the inputs of <code>fit_irf()</code>.
 </div>
 </section>
 <section id="case-study-creating-the-method" class="slide level2 component-code-slide">
@@ -1051,7 +1059,7 @@ Choice of <span class="math inline">\(\varepsilon\)</span>
 </div>
 </div>
 <div class="component-contract fragment fade-in">
-<b>In this recipe:</b> arguments from the DGP match the inputs to <code>fit_irf()</code>; its named outputs contain everything needed by the evaluators.
+The outputs of <code>fit_irf()</code> should return everything needed by the evaluators and visualizers.
 </div>
 </section>
 <section id="case-study-creating-an-evaluator" class="slide level2 component-code-slide evaluator-code-slide">
@@ -1105,7 +1113,7 @@ Choice of <span class="math inline">\(\varepsilon\)</span>
 </div>
 </div>
 <div class="component-contract fragment fade-in">
-<b>Same pattern:</b> replace the metric and name to create the <code>interaction_recovery</code> and <code>stability</code> evaluators.
+<code>fit_results</code> and <code>vary_params</code> are automatically passed to the evaluator functions by <code>simChef</code>.
 </div>
 </section>
 <section id="case-study-creating-a-visualizer" class="slide level2 component-code-slide">
@@ -1146,7 +1154,7 @@ Choice of <span class="math inline">\(\varepsilon\)</span>
 </div>
 </div>
 <div class="component-contract fragment fade-in">
-<b>Same pattern:</b> wrap <code>plot_interaction_recovery()</code> and <code>plot_stability()</code> to create the other two visualizers.
+<code>fit_results</code>, <code>eval_results</code>, and <code>vary_params</code> are automatically passed to the visualizer functions by <code>simChef</code>.
 </div>
 </section>
 <section id="case-study-results-prediction-performance" class="slide level2 prediction-results-slide">
@@ -1180,7 +1188,7 @@ Mean AUPRC
 <span><i>n</i> = 2,000</span><strong>0.840</strong>
 </div>
 <div class="prediction-results-takeaway">
-<b>Takeaway</b><br>Prediction improves as the training sample grows, with smaller gains beyond <i>n</i> = 1,200.
+<b>Takeaway</b><br>Prediction improves as the training sample grows but with diminishing returns.
 </div>
 </div>
 </div>
