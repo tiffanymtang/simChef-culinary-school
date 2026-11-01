@@ -54,18 +54,16 @@ while to finish. It saves the results under `case-studies/results/`.
 ### Download the completed results instead
 
 To skip fitting the simulation, download the cached results from
-[Zenodo](https://zenodo.org/records/23857857). Run the following code from the
+[Zenodo](https://zenodo.org/records/23861655). Run the following code from the
 repository root. It places the files in the same directory structure created by
 the case-study script.
 
 ```r
-record_id <- "23857857"
+record_id <- "23861655"
 result_files <- c(
   "experiment.rds",
   "experiment_cached_params.rds",
-  "fit_results.rds",
-  "eval_results.rds",
-  "viz_results.rds"
+  "fit_results.rds"
 )
 
 results_dir <- file.path(
