@@ -401,7 +401,7 @@ experiment <- create_experiment(
 
 # Run the simulation study sequentially (this will take a while)
 results <- run_experiment(
-  experiment, n_reps = 20, save = TRUE
+  experiment, n_reps = 20, save = TRUE, use_cached = TRUE
 )
 
 # # Run the simulation study in parallel
