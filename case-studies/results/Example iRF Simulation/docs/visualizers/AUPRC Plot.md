@@ -1,0 +1,1 @@
+This figure summarizes held-out prediction performance. The x-axis is training sample size $n$, the y-axis is replicate-level AUPRC, and each boxplot shows the distribution across the 20 simulation replicates. Fill distinguishes the sample-size settings and is suppressed from the legend because the values are already shown on the x-axis.

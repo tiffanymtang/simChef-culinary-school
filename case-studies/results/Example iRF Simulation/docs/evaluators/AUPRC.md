@@ -1,0 +1,3 @@
+Prediction is evaluated on observations excluded from the training set. The metric is area under the precision-recall curve (AUPRC), computed with `yardstick::pr_auc_vec()` from the factor-valued test response and the RF vote probability for class 1. Class 1 is treated as the event of interest.
+
+AUPRC is useful here because the simulated positive class may be less common than the negative class. A value near 1 indicates strong ranking of positive observations; the relevant no-skill reference is the positive-class prevalence. simChef retains the replicate-level scores and reports their mean within each sample-size setting.

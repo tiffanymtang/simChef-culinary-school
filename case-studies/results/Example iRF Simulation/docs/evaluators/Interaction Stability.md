@@ -1,0 +1,3 @@
+For every interaction returned by iRF, this evaluator records its order and bootstrap stability score. The interaction order is the number of distinct grouped features in its underscore-delimited name.
+
+An interaction is labeled **true** when all its features belong to $\{D1,hb,kr,twi,wt.ZLD\}$ and **false** when it contains at least one other feature. This definition treats lower-order subsets of the five-factor LSS rule as true interactions. The individual stability scores are retained in a list column rather than reduced to a single mean, allowing comparison of the complete true- and false-interaction distributions. If no interactions are returned, the evaluator contributes no stability observations for that fit.

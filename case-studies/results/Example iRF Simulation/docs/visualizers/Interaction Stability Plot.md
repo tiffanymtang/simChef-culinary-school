@@ -1,0 +1,3 @@
+This figure compares the bootstrap stability distributions of true and false discovered interactions. The x-axis gives interaction order, the y-axis gives the raw iRF stability score, and fill distinguishes true from false interactions. Columns facet the plot by training sample size, using the labels `n = 400`, `n = 1200`, and `n = 2000`.
+
+Because some sample-size/order combinations may contain only one interaction class, boxplots use a fixed width and preserve the width of a single group. The intended pattern is greater stability for true interactions than for false interactions, particularly as $n$ increases.
