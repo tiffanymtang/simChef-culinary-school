@@ -64,6 +64,42 @@
       "Maintainer": "Garrick Aden-Buie <garrick@posit.co>",
       "Repository": "CRAN"
     },
+    "MASS": {
+      "Package": "MASS",
+      "Version": "7.3-60.2",
+      "Source": "Repository",
+      "Priority": "recommended",
+      "Date": "2024-01-12",
+      "Revision": "$Rev: 3641 $",
+      "Depends": [
+        "R (>= 4.4.0)",
+        "grDevices",
+        "graphics",
+        "stats",
+        "utils"
+      ],
+      "Imports": [
+        "methods"
+      ],
+      "Suggests": [
+        "lattice",
+        "nlme",
+        "nnet",
+        "survival"
+      ],
+      "Authors@R": "c(person(\"Brian\", \"Ripley\", role = c(\"aut\", \"cre\", \"cph\"), email = \"ripley@stats.ox.ac.uk\"), person(\"Bill\", \"Venables\", role = \"ctb\"), person(c(\"Douglas\", \"M.\"), \"Bates\", role = \"ctb\"), person(\"Kurt\", \"Hornik\", role = \"trl\", comment = \"partial port ca 1998\"), person(\"Albrecht\", \"Gebhardt\", role = \"trl\", comment = \"partial port ca 1998\"), person(\"David\", \"Firth\", role = \"ctb\"))",
+      "Description": "Functions and datasets to support Venables and Ripley, \"Modern Applied Statistics with S\" (4th edition, 2002).",
+      "Title": "Support Functions and Datasets for Venables and Ripley's MASS",
+      "LazyData": "yes",
+      "ByteCompile": "yes",
+      "License": "GPL-2 | GPL-3",
+      "URL": "http://www.stats.ox.ac.uk/pub/MASS4/",
+      "Contact": "<MASS@stats.ox.ac.uk>",
+      "NeedsCompilation": "yes",
+      "Author": "Brian Ripley [aut, cre, cph], Bill Venables [ctb], Douglas M. Bates [ctb], Kurt Hornik [trl] (partial port ca 1998), Albrecht Gebhardt [trl] (partial port ca 1998), David Firth [ctb]",
+      "Maintainer": "Brian Ripley <ripley@stats.ox.ac.uk>",
+      "Repository": "CRAN"
+    },
     "Matrix": {
       "Package": "Matrix",
       "Version": "1.7-0",
@@ -1234,6 +1270,49 @@
       "NeedsCompilation": "no",
       "Author": "Hadley Wickham [aut] (ORCID: <https://orcid.org/0000-0003-4757-117X>), Winston Chang [aut] (ORCID: <https://orcid.org/0000-0002-1576-2126>), Lionel Henry [aut], Thomas Lin Pedersen [aut, cre] (ORCID: <https://orcid.org/0000-0002-5147-4711>), Kohske Takahashi [aut], Claus Wilke [aut] (ORCID: <https://orcid.org/0000-0002-7470-9261>), Kara Woo [aut] (ORCID: <https://orcid.org/0000-0002-5125-4188>), Hiroaki Yutani [aut] (ORCID: <https://orcid.org/0000-0002-3385-7233>), Dewey Dunnington [aut] (ORCID: <https://orcid.org/0000-0002-9415-4582>), Teun van den Brand [aut] (ORCID: <https://orcid.org/0000-0002-9335-7468>), Posit, PBC [cph, fnd] (ROR: <https://ror.org/03wc8by49>)",
       "Maintainer": "Thomas Lin Pedersen <thomas.pedersen@posit.co>",
+      "Repository": "CRAN"
+    },
+    "glmnet": {
+      "Package": "glmnet",
+      "Version": "4.1-10",
+      "Source": "Repository",
+      "Type": "Package",
+      "Title": "Lasso and Elastic-Net Regularized Generalized Linear Models",
+      "Date": "2025-07-15",
+      "Authors@R": "c(person(\"Jerome\", \"Friedman\", role=c(\"aut\")), person(\"Trevor\", \"Hastie\", role=c(\"aut\", \"cre\"), email = \"hastie@stanford.edu\"), person(\"Rob\", \"Tibshirani\", role=c(\"aut\")), person(\"Balasubramanian\", \"Narasimhan\", role=c(\"aut\")), person(\"Kenneth\",\"Tay\",role=c(\"aut\")), person(\"Noah\", \"Simon\", role=c(\"aut\")), person(\"Junyang\", \"Qian\", role=c(\"ctb\")), person(\"James\", \"Yang\", role=c(\"aut\")))",
+      "Depends": [
+        "R (>= 3.6.0)",
+        "Matrix (>= 1.0-6)"
+      ],
+      "Imports": [
+        "methods",
+        "utils",
+        "foreach",
+        "shape",
+        "survival",
+        "Rcpp"
+      ],
+      "Suggests": [
+        "knitr",
+        "lars",
+        "testthat",
+        "xfun",
+        "rmarkdown"
+      ],
+      "SystemRequirements": "C++17",
+      "Description": "Extremely efficient procedures for fitting the entire lasso or elastic-net regularization path for linear regression, logistic and multinomial regression models, Poisson regression, Cox model,  multiple-response Gaussian, and the grouped multinomial regression; see <doi:10.18637/jss.v033.i01> and <doi:10.18637/jss.v039.i05>. There are two new and important additions. The family argument can be a GLM family object, which opens the door to any programmed family (<doi:10.18637/jss.v106.i01>). This comes with a modest computational cost, so when the built-in families suffice, they should be used instead.  The other novelty is the relax option, which refits each of the active sets in the path unpenalized. The algorithm uses cyclical coordinate descent in a path-wise fashion, as described in the papers cited.",
+      "License": "GPL-2",
+      "VignetteBuilder": "knitr",
+      "Encoding": "UTF-8",
+      "URL": "https://glmnet.stanford.edu",
+      "RoxygenNote": "7.3.2",
+      "LinkingTo": [
+        "RcppEigen",
+        "Rcpp"
+      ],
+      "NeedsCompilation": "yes",
+      "Author": "Jerome Friedman [aut], Trevor Hastie [aut, cre], Rob Tibshirani [aut], Balasubramanian Narasimhan [aut], Kenneth Tay [aut], Noah Simon [aut], Junyang Qian [ctb], James Yang [aut]",
+      "Maintainer": "Trevor Hastie <hastie@stanford.edu>",
       "Repository": "CRAN"
     },
     "globals": {
@@ -2814,6 +2893,26 @@
       "Maintainer": "Thomas Lin Pedersen <thomas.pedersen@posit.co>",
       "Repository": "RSPM"
     },
+    "shape": {
+      "Package": "shape",
+      "Version": "1.4.6.1",
+      "Source": "Repository",
+      "Title": "Functions for Plotting Graphical Shapes, Colors",
+      "Author": "Karline Soetaert <karline.soetaert@nioz.nl>",
+      "Maintainer": "Karline Soetaert <karline.soetaert@nioz.nl>",
+      "Depends": [
+        "R (>= 2.01)"
+      ],
+      "Imports": [
+        "stats",
+        "graphics",
+        "grDevices"
+      ],
+      "Description": "Functions for plotting graphical shapes such as ellipses, circles, cylinders, arrows, ...",
+      "License": "GPL (>= 3)",
+      "NeedsCompilation": "no",
+      "Repository": "CRAN"
+    },
     "simChef": {
       "Package": "simChef",
       "Version": "0.1.0.9000",
@@ -2993,6 +3092,36 @@
       "Author": "Hadley Wickham [aut, cre, cph], Posit Software, PBC [cph, fnd]",
       "Maintainer": "Hadley Wickham <hadley@posit.co>",
       "Repository": "https://packagemanager.posit.co/cran/latest"
+    },
+    "survival": {
+      "Package": "survival",
+      "Version": "3.6-4",
+      "Source": "Repository",
+      "Title": "Survival Analysis",
+      "Priority": "recommended",
+      "Date": "2024-04-22",
+      "Depends": [
+        "R (>= 3.5.0)"
+      ],
+      "Imports": [
+        "graphics",
+        "Matrix",
+        "methods",
+        "splines",
+        "stats",
+        "utils"
+      ],
+      "LazyData": "Yes",
+      "LazyDataCompression": "xz",
+      "ByteCompile": "Yes",
+      "Authors@R": "c(person(c(\"Terry\", \"M\"), \"Therneau\", email=\"therneau.terry@mayo.edu\", role=c(\"aut\", \"cre\")), person(\"Thomas\", \"Lumley\", role=c(\"ctb\", \"trl\"), comment=\"original S->R port and R maintainer until 2009\"), person(\"Atkinson\", \"Elizabeth\", role=\"ctb\"), person(\"Crowson\", \"Cynthia\", role=\"ctb\"))",
+      "Description": "Contains the core survival analysis routines, including definition of Surv objects,  Kaplan-Meier and Aalen-Johansen (multi-state) curves, Cox models, and parametric accelerated failure time models.",
+      "License": "LGPL (>= 2)",
+      "URL": "https://github.com/therneau/survival",
+      "NeedsCompilation": "yes",
+      "Author": "Terry M Therneau [aut, cre], Thomas Lumley [ctb, trl] (original S->R port and R maintainer until 2009), Atkinson Elizabeth [ctb], Crowson Cynthia [ctb]",
+      "Maintainer": "Terry M Therneau <therneau.terry@mayo.edu>",
+      "Repository": "CRAN"
     },
     "svglite": {
       "Package": "svglite",
