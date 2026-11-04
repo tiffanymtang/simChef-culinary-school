@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.5.53">
 
   <meta name="author" content="Tiffany Tang">
-  <meta name="dcterms.date" content="2026-11-01">
+  <meta name="dcterms.date" content="2026-11-05">
   <title>simChef culinary school 🍳</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -415,7 +415,7 @@ Tiffany Tang
     </div>
 </div>
 
-  <p class="date">November 1, 2026</p>
+  <p class="date">November 5, 2026</p>
 </section>
 <section id="todays-recipe" class="slide level2 hide-logo">
 <h2>Today’s recipe</h2>
@@ -717,7 +717,7 @@ the visualization functions used to <b>visualize</b> the results (e.g., tables, 
 <div class="simchef-constructor-row fragment fade-in-then-out">
 <div class="simchef-constructor" data-markdown="1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a>dgp <span class="ot">&lt;-</span> <span class="fu">create_dgp</span>(</span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a>my_dgp <span class="ot">&lt;-</span> <span class="fu">create_dgp</span>(</span>
 <span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">.dgp_fun =</span> dgp_fun, </span>
 <span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">.name =</span> <span class="st">"DGP Name"</span>,</span>
 <span id="cb4-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="co"># named arguments to pass to .dgp_fun</span></span>
@@ -727,7 +727,7 @@ the visualization functions used to <b>visualize</b> the results (e.g., tables, 
 </div>
 <div class="simchef-constructor" data-markdown="1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>method <span class="ot">&lt;-</span> <span class="fu">create_method</span>(</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>my_method <span class="ot">&lt;-</span> <span class="fu">create_method</span>(</span>
 <span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">.method_fun =</span> method_fun, </span>
 <span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">.name =</span> <span class="st">"Method Name"</span>,</span>
 <span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="co"># named arguments to pass to .method_fun</span></span>
@@ -737,7 +737,7 @@ the visualization functions used to <b>visualize</b> the results (e.g., tables, 
 </div>
 <div class="simchef-constructor" data-markdown="1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a>evaluator <span class="ot">&lt;-</span> <span class="fu">create_evaluator</span>(</span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a>my_evaluator <span class="ot">&lt;-</span> <span class="fu">create_evaluator</span>(</span>
 <span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">.eval_fun =</span> eval_fun, </span>
 <span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">.name =</span> <span class="st">"Evaluator Name"</span>,</span>
 <span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="co"># named arguments to pass to .eval_fun</span></span>
@@ -747,7 +747,7 @@ the visualization functions used to <b>visualize</b> the results (e.g., tables, 
 </div>
 <div class="simchef-constructor" data-markdown="1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a>visualizer <span class="ot">&lt;-</span> <span class="fu">create_visualizer</span>(</span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a>my_visualizer <span class="ot">&lt;-</span> <span class="fu">create_visualizer</span>(</span>
 <span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">.viz_fun =</span> viz_fun, </span>
 <span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">.name =</span> <span class="st">"Visualizer Name"</span>,</span>
 <span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="co"># named arguments to pass to .viz_fun</span></span>

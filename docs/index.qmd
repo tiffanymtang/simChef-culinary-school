@@ -5,7 +5,7 @@ author: "Tiffany Tang"
 institute: |
   University of Notre Dame<div style="height: 0.25em;"></div>
   <b>Slides</b>: <a href="https://tiffanymtang.github.io/simChef-culinary-school">https://tiffanymtang.github.io/simChef-culinary-school</a><br><div style="height: 0.05em;"></div><b>GitHub</b>: <a href="https://github.com/tiffanymtang/simChef-culinary-school">https://github.com/tiffanymtang/simChef-culinary-school</a>
-date: "November 1, 2026"
+date: "November 5, 2026"
 date-format: "MMMM D, YYYY"
 format:
   revealjs:
@@ -322,7 +322,7 @@ render_docs(experiment)
 #| echo: true
 #| code-line-numbers: false
 
-dgp <- create_dgp(
+my_dgp <- create_dgp(
   .dgp_fun = dgp_fun, 
   .name = "DGP Name",
   # named arguments to pass to .dgp_fun
@@ -338,7 +338,7 @@ dgp <- create_dgp(
 #| echo: true
 #| code-line-numbers: false
 
-method <- create_method(
+my_method <- create_method(
   .method_fun = method_fun, 
   .name = "Method Name",
   # named arguments to pass to .method_fun
@@ -354,7 +354,7 @@ method <- create_method(
 #| echo: true
 #| code-line-numbers: false
 
-evaluator <- create_evaluator(
+my_evaluator <- create_evaluator(
   .eval_fun = eval_fun, 
   .name = "Evaluator Name",
   # named arguments to pass to .eval_fun
@@ -370,7 +370,7 @@ evaluator <- create_evaluator(
 #| echo: true
 #| code-line-numbers: false
 
-visualizer <- create_visualizer(
+my_visualizer <- create_visualizer(
   .viz_fun = viz_fun, 
   .name = "Visualizer Name",
   # named arguments to pass to .viz_fun
