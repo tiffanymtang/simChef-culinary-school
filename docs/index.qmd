@@ -5,7 +5,7 @@ author: "Tiffany Tang"
 institute: |
   University of Notre Dame<div style="height: 0.25em;"></div>
   <b>Slides</b>: <a href="https://tiffanymtang.github.io/simChef-culinary-school">https://tiffanymtang.github.io/simChef-culinary-school</a><br><div style="height: 0.05em;"></div><b>GitHub</b>: <a href="https://github.com/tiffanymtang/simChef-culinary-school">https://github.com/tiffanymtang/simChef-culinary-school</a>
-date: "November 5, 2026"
+date: "November 20, 2026"
 date-format: "MMMM D, YYYY"
 format:
   revealjs:
@@ -389,6 +389,25 @@ my_visualizer <- create_visualizer(
 </div>
 </div>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const functionNames = /\b(dgp_fun|method_fun|eval_fun|viz_fun)\b/;
+  document.querySelectorAll(".component-slide .simchef-constructor code.sourceCode > span")
+    .forEach((line) => {
+      if (!line.textContent.includes(" = ")) return;
+      const value = [...line.childNodes].find((node) =>
+        node.nodeType === Node.TEXT_NODE && functionNames.test(node.textContent));
+      if (!value) return;
+      const match = value.textContent.match(functionNames);
+      const mark = document.createElement("mark");
+      mark.className = "simchef-function-highlight";
+      mark.textContent = match[0];
+      value.replaceWith(value.textContent.slice(0, match.index), mark,
+        value.textContent.slice(match.index + match[0].length));
+    });
+});
+</script>
+
 
 ## Case Study: Interaction Discovery with iRF {.hide-logo .irf-intro-slide}
 
@@ -485,13 +504,14 @@ See [case-studies/interaction_discovery.R](https://github.com/tiffanymtang/simCh
 </div>
 </div>
 
-<div class="irf-design-controls fragment fade-in" data-fragment-index="5">
+<div class="irf-design-controls">
 <div class="irf-design-control-stack">
-<div class="irf-design-control"><b>Vary:</b> $n \in \{400,1200,2000\}$</div>
+<div class="irf-design-control fragment fade-in" data-fragment-index="5"><b>Vary:</b> $n \in \{400,1200,2000\}$</div>
 <!-- <div class="irf-design-control"><b>Vary:</b> noise type $\in \{\text{RF},\text{swap}\}$</div> -->
 </div>
-<div class="irf-design-control-stack">
-<div class="irf-design-control fragment irf-gray-out" data-fragment-index="6"><b>Vary:</b> num. of iterations $K=1,\ldots,5$</div>
+<div class="irf-design-control-stack irf-k-control">
+<div class="irf-design-control fragment fade-in" data-fragment-index="5"><b>Vary:</b> num. of iterations $K=1,\ldots,5$</div>
+<div class="irf-design-control fragment fade-in irf-gray-out" data-fragment-index="6" aria-hidden="true"><b>Vary:</b> num. of iterations $K=1,\ldots,5$</div>
 </div>
 </div>
 
@@ -527,6 +547,36 @@ See [case-studies/interaction_discovery.R](https://github.com/tiffanymtang/simCh
 <div class="irf-dgp-example-item fragment fade-in" data-fragment-index="11"><b>E.g.,</b> RF noise</div>
 </div>
 </div>
+
+<button type="button" class="irf-details-button" aria-label="Show detailed case study slides" title="Show slides 15–19">code details</button>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const recipe = document.getElementById("case-study-the-simchef-recipe");
+  const firstDetail = document.getElementById("case-study-creating-the-dgp");
+  const lastDetail = document.getElementById("case-study-results-prediction-performance");
+  const closing = document.getElementById("ready-to-cook-up-your-own-simulation");
+  let showingDetails = false;
+
+  const goTo = (slide) => Reveal.slide(Reveal.getSlides().indexOf(slide));
+
+  recipe.querySelector(".irf-details-button").addEventListener("click", (event) => {
+    event.stopPropagation();
+    showingDetails = true;
+    goTo(firstDetail);
+  });
+
+  Reveal.on("slidechanged", ({ previousSlide, currentSlide }) => {
+    if (showingDetails) {
+      if (currentSlide === recipe || currentSlide === closing) showingDetails = false;
+    } else if (previousSlide === recipe && currentSlide === firstDetail) {
+      goTo(closing);
+    } else if (previousSlide === closing && currentSlide === lastDetail) {
+      goTo(recipe);
+    }
+  });
+});
+</script>
 
 
 ## Case Study: Creating the DGP {.component-code-slide}

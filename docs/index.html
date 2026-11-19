@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.5.53">
 
   <meta name="author" content="Tiffany Tang">
-  <meta name="dcterms.date" content="2026-11-05">
+  <meta name="dcterms.date" content="2026-11-20">
   <title>simChef culinary school 🍳</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -415,7 +415,7 @@ Tiffany Tang
     </div>
 </div>
 
-  <p class="date">November 5, 2026</p>
+  <p class="date">November 20, 2026</p>
 </section>
 <section id="todays-recipe" class="slide level2 hide-logo">
 <h2>Today’s recipe</h2>
@@ -767,6 +767,24 @@ Can also add multiple DGP/methods parameters to <strong>vary across</strong> (e.
 </ul>
 </div>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const functionNames = /\b(dgp_fun|method_fun|eval_fun|viz_fun)\b/;
+  document.querySelectorAll(".component-slide .simchef-constructor code.sourceCode > span")
+    .forEach((line) => {
+      if (!line.textContent.includes(" = ")) return;
+      const value = [...line.childNodes].find((node) =>
+        node.nodeType === Node.TEXT_NODE && functionNames.test(node.textContent));
+      if (!value) return;
+      const match = value.textContent.match(functionNames);
+      const mark = document.createElement("mark");
+      mark.className = "simchef-function-highlight";
+      mark.textContent = match[0];
+      value.replaceWith(value.textContent.slice(0, match.index), mark,
+        value.textContent.slice(match.index + match[0].length));
+    });
+});
+</script>
 </section>
 <section id="case-study-interaction-discovery-with-irf" class="slide level2 hide-logo irf-intro-slide">
 <h2>Case Study: Interaction Discovery with iRF</h2>
@@ -891,15 +909,18 @@ plot_predictions(), plot_interactions(), plot_stability()
 </div>
 </div>
 </div>
-<div class="irf-design-controls fragment fade-in" data-fragment-index="5">
+<div class="irf-design-controls">
 <div class="irf-design-control-stack">
-<div class="irf-design-control">
+<div class="irf-design-control fragment fade-in" data-fragment-index="5">
 <b>Vary:</b> <span class="math inline">\(n \in \{400,1200,2000\}\)</span>
 </div>
 <!-- <div class="irf-design-control"><b>Vary:</b> noise type $\in \{\text{RF},\text{swap}\}$</div> -->
 </div>
-<div class="irf-design-control-stack">
-<div class="irf-design-control fragment irf-gray-out" data-fragment-index="6">
+<div class="irf-design-control-stack irf-k-control">
+<div class="irf-design-control fragment fade-in" data-fragment-index="5">
+<b>Vary:</b> num. of iterations <span class="math inline">\(K=1,\ldots,5\)</span>
+</div>
+<div class="irf-design-control fragment fade-in irf-gray-out" data-fragment-index="6" aria-hidden="true">
 <b>Vary:</b> num. of iterations <span class="math inline">\(K=1,\ldots,5\)</span>
 </div>
 </div>
@@ -964,6 +985,36 @@ Choice of <span class="math inline">\(\varepsilon\)</span>
 </div>
 </div>
 </div>
+<button type="button" class="irf-details-button" aria-label="Show detailed case study slides" title="Show slides 15–19">
+code details
+</button>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const recipe = document.getElementById("case-study-the-simchef-recipe");
+  const firstDetail = document.getElementById("case-study-creating-the-dgp");
+  const lastDetail = document.getElementById("case-study-results-prediction-performance");
+  const closing = document.getElementById("ready-to-cook-up-your-own-simulation");
+  let showingDetails = false;
+
+  const goTo = (slide) => Reveal.slide(Reveal.getSlides().indexOf(slide));
+
+  recipe.querySelector(".irf-details-button").addEventListener("click", (event) => {
+    event.stopPropagation();
+    showingDetails = true;
+    goTo(firstDetail);
+  });
+
+  Reveal.on("slidechanged", ({ previousSlide, currentSlide }) => {
+    if (showingDetails) {
+      if (currentSlide === recipe || currentSlide === closing) showingDetails = false;
+    } else if (previousSlide === recipe && currentSlide === firstDetail) {
+      goTo(closing);
+    } else if (previousSlide === closing && currentSlide === lastDetail) {
+      goTo(recipe);
+    }
+  });
+});
+</script>
 </section>
 <section id="case-study-creating-the-dgp" class="slide level2 component-code-slide">
 <h2>Case Study: Creating the DGP</h2>

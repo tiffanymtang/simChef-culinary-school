@@ -67,6 +67,7 @@
 .reveal .simchef-constructor .cell { min-width: 0; width: 100%; }
 .reveal .component-slide .simchef-constructor pre { box-sizing: border-box; font-size: 0.39em; margin: 0; overflow: visible; width: 100%; }
 .reveal .simchef-constructor pre code { line-height: 1.35; }
+.reveal .simchef-constructor mark.simchef-function-highlight { background: #ffeb66; color: inherit; padding: 0 0.08em; }
 .reveal .simchef-component-takeaways { align-self: start; font-size: 0.68em; }
 .reveal .simchef-component-takeaways ul { margin: 0.08em 0 0 1.2em; }
 .reveal .simchef-component-takeaways li { line-height: 1.3; padding: 0.12em 0; }
@@ -135,8 +136,9 @@
 .reveal .irf-component-output { background: #e7f0f7; border-radius: 5px; bottom: 0.4em; box-sizing: border-box; color: #445b6e; font-size: 0.45em; left: 0.45em; line-height: 1.23; padding: 0.3em; position: absolute; right: 0.45em; text-align: center; }
 .reveal .irf-design-controls { display: grid; gap: 0.4em; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 0.45em; }
 .reveal .irf-design-control-stack { display: flex; flex-direction: column; gap: 0.24em; }
+.reveal .irf-k-control { display: grid; }
+.reveal .irf-k-control .irf-design-control { grid-area: 1 / 1; }
 .reveal .irf-design-control { background: var(--blue); border-radius: 999px; color: #fff; font-size: 0.43em; padding: 0.4em 0.35em; text-align: center; }
-.reveal .fragment.irf-gray-out { opacity: 1; visibility: inherit; }
 .reveal .fragment.irf-gray-out.visible { background: #d5d9dd; color: #6f7880; }
 .reveal .irf-dgp-summary { margin-top: 0.42em; padding-top: 0.35em; }
 .reveal .irf-dgp-summary-rule { border-top: 1px solid rgb(96 117 138 / 30%); height: 0; margin-bottom: 0.35em; }
@@ -152,6 +154,8 @@
 .reveal .irf-dgp-summary-note { color: #60758a; font-size: 0.33em; margin-top: 0.3em; text-align: center; }
 .reveal .irf-dgp-summary-note a { color: inherit; text-decoration: underline; }
 .reveal .irf-components-takeaway { color: #60758a; font-size: 0.47em; margin-top: 0.55em; text-align: center; }
+.reveal .irf-details-button { background: transparent; border: 0; color: #9aa7b0; cursor: pointer; display: block; font-size: 0.5em; line-height: 1.2; margin: 0.7em 2.1em 0 auto; padding: 0; white-space: nowrap; }
+.reveal .irf-details-button:hover, .reveal .irf-details-button:focus-visible { text-decoration: underline; }
 .reveal .case-study-results img { display: block; margin: -0.25em auto 0; max-height: 455px; width: 100%; }
 .reveal .case-study-results p { margin: 0.25em 0; text-align: center; }
 .reveal .case-study-note { color: #555; font-size: 0.45em; margin-top: 0.25em; text-align: center; }
